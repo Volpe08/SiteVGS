@@ -1,0 +1,131 @@
+html{
+    font-family: "Comic Sans MS", serif;
+    margin-top: 150px;
+}
+
+body {
+    color: var(--text_color);
+    background: var(--body_bg_color);
+}
+
+.invisible{
+    display: none;
+}
+
+h1{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+}
+
+div.choice{
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+    margin-bottom: 40px;
+}
+
+form.form_choice{
+    display: flex;
+    justify-content: center;
+}
+
+input.input-select{
+    border: 2px solid black;
+    border-radius: 10px;
+    background: #5E5E5E;
+    padding: 10px;
+    outline: none;
+}
+
+input.middle{
+    top: 210px;
+}
+
+/*input.row{*/
+/*    margin: 50px 10px 10px 10px;*/
+/*}*/
+
+/*input.focus{*/
+/*    background: black;*/
+/*    border: 2px solid #5E5E5E;*/
+/*    color: var(--text_color);*/
+/*}*/
+
+div.categorie{
+    display: table;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+div.group {
+    margin-top: 5px;
+    display: table-row;
+}
+
+div.solo{
+    margin: 10px 20px 10px 20px;
+    display: inline-table;
+    border-radius: 10px;
+    border: var(--border_solo);
+    width: 150px;
+    height: 150px;
+}
+
+div.solo a{
+    text-decoration: none;
+    color: var(--text_color);
+}
+
+img.image_solo{
+    height: 300px;
+    width: 200px;
+    padding: 5px;
+}
+
+/*projet solo*/
+h1.title_pres{
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+div.pres{
+    display: flex;
+    flex-flow: row;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+div.image_pres{
+    padding: 20px;
+}
+
+div.texte_pres{
+    padding: 20px;
+}
+
+div.link{
+    padding: 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+div.link a{
+    padding: 7px;
+    text-decoration: none;
+    color: deepskyblue;
+}

@@ -1,0 +1,86 @@
+html{
+    margin-top: 150px;
+}
+
+.invisible{
+    display: none;
+}
+
+form.form_choice{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+input.input-select{
+    border: 2px solid #5E5E5E;
+    border-radius: 10px;
+    background: #5E5E5E;
+    padding: 10px;
+    outline: none;
+    margin: 0 10px 0 10px;
+    text-align: center;
+}
+
+input.focus{
+    background: black;
+    border: 2px solid #5E5E5E;
+    color: var(--text_color);
+    outline: none;
+}
+
+input.text{
+    margin-top: 15px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+input.genre{
+    width: 300px;
+    padding: 5px;
+}
+
+input.button{
+    font-size: 20px;
+    background: #1E1E1E;
+    border: 2px solid #3E3E3E;
+    border-radius: 20px;
+    padding: 15px;
+    color: #444544;
+    outline: none;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    border: 5px solid #444544;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+p.note{
+    margin-bottom: 15px;
+}
+
+input.text, .filup{
+    background: #1E1E1E;
+    color: var(--text_color);
+    border: var(--border_black);
+    border-radius: 15px;
+    text-align: center;
+}
+
+input.formchoice{
+    margin-bottom: 5px;
+    display: flex;
+    margin-left: 45%;
+}
+
+input{
+    outline: none;
+}
+
+div.mangas input{
+    display: flex;
+    flex-flow: column;
+}

@@ -1,0 +1,70 @@
+html.contact{
+    font-family: "Comic Sans MS", serif;
+    margin-top: 150px;
+}
+
+html.contact body{
+    color: var(--text_color);
+    background: var(--body_bg_color);
+}
+
+div.contact h2{
+    font-size: 40px;
+}
+
+a.reseaux{
+    color: var(--text_black);
+    padding-bottom: 40px;
+}
+
+a.mk{
+    padding-top: 50px;
+}
+
+img.reseaux_contact{
+    width: 30px;
+    height: 30px;
+}
+
+div#discord {
+    background-image: var(--discord);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+div#twitch {
+    background-image: var(--twitch);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+div#twitter {
+    background-image: var(--twitter);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+}div#facebook {
+     background-image: var(--facebook);
+     background-repeat: no-repeat;
+     background-size: 30px;
+     width: 30px;
+     height: 30px;
+ }
+div#youtube {
+    background-image: var(--youtube);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+
+
+img.mk{
+    margin-top: 20px;
+    width: 120px;
+    height: 45px;
+}

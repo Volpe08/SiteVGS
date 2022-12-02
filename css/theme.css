@@ -1,0 +1,48 @@
+body {
+    /*width: 100%;*/
+    background-color: black;
+}
+
+/*.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center !important;
+} @media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}*/
+
+.page {
+    text-align: center !important;
+    /*width: 200%;*/
+}
+
+.text{
+    color: white;
+}
+
+#numero_de_page{
+    color: orange;
+}
+
+.arrow{
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    background-color: white;
+    padding: 5px;
+}
+
+.left {
+    top: 50%;
+    left: 10px;
+}
+
+.right {
+    top: 50%;
+    right: 10px;
+}

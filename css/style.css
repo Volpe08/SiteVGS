@@ -1,0 +1,73 @@
+html{
+    font-family: "Comic Sans MS", serif;
+    margin-top: 150px;
+}
+
+body {
+    background-color: var(--body_bg_color);
+    color: var(--text_color);
+}
+
+/*index.php*/
+.container{
+    padding-bottom: 25px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+} @media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+div.first{
+    margin-top: 150px;
+}
+
+.title_container{
+    position: relative;
+    text-align: center;
+    padding: 6px 8px;
+    width: 175px;
+    border: var(--border_solo);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.announces{
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    border: var(--border_solo);
+    border-radius: 10px;
+    box-sizing: content-box;
+    width: max-content;
+}
+
+a.config{
+    color: black;
+}
+
+input.button{
+    font-size: 20px;
+    background: #1E1E1E;
+    border: 2px solid #3E3E3E;
+    border-radius: 20px;
+    padding: 15px;
+    color: #444544;
+    outline: none;
+}
+
+.oublie {
+    text-decoration: none;
+    color: black;
+}
+
+.oubie:hover {
+    text-decoration: black;
+}

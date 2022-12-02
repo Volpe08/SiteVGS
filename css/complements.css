@@ -1,0 +1,214 @@
+* {-moz-box-sizing: border-box; box-sizing: border-box;}
+
+element {
+    --body_bg_color : #2E2E2E;
+    --bg_complement : dodgerblue;
+    --text_color : white;
+    --text_black : black;
+
+    --border_black : 2px solid black;
+    --border_solo : 2px solid dodgerblue;
+
+    --twitch : url(../img/twitch.png);
+    --discord : url(../img/discord.png);
+    --youtube : url(../img/youtube.png);
+    --facebook : url(../img/facebook.png);
+    --twitter : url(../img/twitter.png);
+
+}
+
+html.complements{
+    font-family: "Comic Sans MS", serif;
+    background: var(--bg_complement);
+    color: var(--text_color);
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.a_header ul li a{
+    color: var(--text_color);
+}
+
+/*header.php*/
+header{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+header div{
+    display: block;
+    font-size: 20px;
+    padding: 5px 0 5px 0;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+header nav ul, header nav ul li, header nav ul li a{
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+}
+
+div.button_top{
+    background: #00000000;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    opacity: 30%;
+    list-style-type: none;
+}
+
+div.button_top:hover{
+    opacity: 100%;
+    transition: 0.5s;
+}
+
+img.top-arrow{
+    width: 30px;
+    height: 30px;
+}
+
+
+/*footer.php*/
+footer.footer{
+    display: table-row;
+    height: 1px;
+}
+
+div.footer{
+    display: table;
+    width: 100%;
+    margin-top: 100px;
+    height: auto;
+    position: static;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.back{
+    border: 1px solid blue;
+    outline: none;
+    border-radius: 10px;
+}
+
+/*.white, .white div.solo, .white div.solo a p.name {*/
+/*    background-color: #C0C0C0!important;*/
+/*    color: black!important;*/
+/*}*/
+
+/*.white div.solo{*/
+/*    border: 2px solid black;*/
+/*}*/
+
+/*.white_grey, .white_grey ul li a{*/
+/*    background-color: white!important;*/
+/*    color: black!important;*/
+/*}*/
+
+
+/*.grey{*/
+/*    background-color: #2A2A2A!important;*/
+/*    color: white!important;*/
+/*}*/
+
+
+/*.black, .black a.config, .black div.solo{*/
+/*    background-color: black!important;*/
+/*    color: white!important;*/
+/*}*/
+
+/*.black a.reseaux{*/
+/*    color: white!important;*/
+/*}*/
+
+/*.black div.solo{*/
+/*    border: 2px solid white;*/
+/*}*/
+
+/*.black img.reseaux_contact{*/
+/*    padding: 1px;*/
+/*    background-color: white!important;*/
+/*}*/
+
+
+.normal{
+    background-color: var(--bg_complement);
+    color: var(--text_color);
+}
+
+.light{
+    background-color: whitesmoke;
+    color: black!important;
+}
+
+
+.dark{
+    background: var(--body_bg_color);
+    color: var(--text_color);
+}
+
+footer div{
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+footer div div {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+footer div div a img.reseaux{
+    padding-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+footer div div a div#discord_footer {
+    background-image: var(--discord);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+}
+footer div div a div#twitch_footer {
+    background-image: var(--twitch);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+}
+footer div div a div#twitter_footer {
+    background-image: var(--twitter);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+}
+footer div div a div#facebook_footer {
+     background-image: var(--facebook);
+     background-repeat: no-repeat;
+     background-size: 30px;
+     width: 40px;
+     height: 40px;
+}
+footer div div a div#youtube_footer {
+    background-image: var(--youtube);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+}
