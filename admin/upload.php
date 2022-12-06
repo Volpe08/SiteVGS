@@ -100,8 +100,8 @@ if (isset($_POST['formcreate'])) {
 
 if (isset($_POST['formchap'])) {
 
-        $number = $_POST['number'];
-        $exist = '../img/scan/' . $_POST['name'] . "/" . $_POST['number'];
+        $number = str_replace('.','-',$_POST['number']);
+        $exist = '../img/scan/' . $_POST['name'] . "/" . $number;
         $cible = $_POST['name'];
         $date_update = date('Y-m-d H:i:s');
         $sortie = $bdd->query('SELECT * FROM mangas WHERE nom = "' . $cible . '"');
@@ -115,22 +115,28 @@ if (isset($_POST['formchap'])) {
         }
         rmdir($exist);
     }
-    if (!file_exists('../img/scan/' . $_POST['name'] . "/" . $_POST['number'] . "/")) {
-        mkdir('../img/scan/' . $_POST['name'] . "/" . $_POST['number'] . "/", 0777, true);
+    if (!file_exists('../img/scan/' . $_POST['name'] . "/" . $number . "/")) {
+        mkdir('../img/scan/' . $_POST['name'] . "/" . $number . "/", 0777, true);
     }
-    if (!empty($_POST['number']) AND !empty($_POST['name'] )) {
-        $uploaddir = '../img/scan/' . $_POST['name'] . "/" . $_POST['number'] . "/";
+    if (!empty($number) AND !empty($_POST['name'] )) {
+        $uploaddir = '../img/scan/' . $_POST['name'] . "/" . $number . "/";
         $uploadfile =  $uploaddir . basename($_FILES['file_zip']['name']);
-        rename($_FILES['file_zip']['tmp_name'], $uploaddir . $cible . " - " . $number . ".zip");
+        //var_dump($_FILES['file_zip']['name']);
+        move_uploaded_file($_FILES['file_zip']['tmp_name'], $uploaddir . $cible . " - " . $number . ".zip");
+
         $zip = new ZipArchive();
+
         $zip->open($uploaddir . $cible . " - " . $number . ".zip",ZipArchive::CREATE);
+        //$zip->open($uploaddir . $cible . " - " . $number . ".zip");
+
 
 
 
 
         $i = 0;
         $nameindex = 1;
-        $count = $zip->numFiles;
+        $count = $zip->count();
+        //var_dump($count);
         while ($count > $i) {
             $zip->renameIndex($i, $nameindex . '.jpg');
             $i += 1;
@@ -154,7 +160,7 @@ if (isset($_POST['formchap'])) {
         $insertchap->execute(array());*/
 
 
-        $insertchap = $bdd->prepare("INSERT INTO chapites (projet, nb_chap, data_date) VALUES(?, ?, ?)");
+        $insertchap = $bdd->prepare("INSERT INTO chapitres (projet, nb_chap, data_date) VALUES(?, ?, ?)");
         $insertchap->execute(array($cible, $number, $date_update));
 
         $erreur = "Votre chapitre a bien été upload ! ";

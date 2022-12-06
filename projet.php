@@ -133,7 +133,7 @@ while ($donnees = $sortie->fetch()):
             {
             } else {
                 ?>
-                <a href="main.php?name=<?= $donnees['nom'] ?>&chap=<?= $fichier ?>">Chapitre <?= $fichier ?></a> <?php
+                <a href="main.php?name=<?= $donnees['nom'] ?>&chap=<?= $fichier ?>">Chapitre <?= str_replace('-','.',$fichier) ?></a> <?php
             }
         }
     }
