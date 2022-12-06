@@ -57,9 +57,9 @@ ajouter_vue();
 
 <html>
 <head>
-    <link rel="icon" type="image/jpg" href="../img/vgs.png">
+    <link rel="icon" type="image/jpg" href="./img/vgs.png">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/complements.css">
+    <link rel="stylesheet" type="text/css" href="./css/complements.css">
 </head>
 
 <body>
@@ -69,42 +69,42 @@ ajouter_vue();
             <nav class="a_header" id="toggle_nav">
                 <ul>
                     <li>
-                        <a href="../index.php">ACCUEIL</a>
+                        <a href="./index.php">ACCUEIL</a>
                     </li>
 
                     <li >
-                        <a href="../mangas.php">MANGAS</a>
+                        <a href="./mangas.php">MANGAS</a>
                     </li>
 
                     <li>
-                        <a href="../team.php">LA TEAM</a>
+                        <a href="./team.php">LA TEAM</a>
                     </li>
                     <li>
-                        <a href="../index.php"><img src="../img/vgs.png" width="90" height="75"></a>
+                        <a href="./index.php"><img src="./img/vgs.png" width="90" height="75"></a>
                     </li>
                     <li>
-                        <a href="../contact.php">CONTACT</a>
+                        <a href="./contact.php">CONTACT</a>
                     </li>
                     <?php if(!est_connecte()): ?>
                         <li>
-                            <a href="../inscription.php">INSCRIPTION</a>
+                            <a href="./inscription.php">INSCRIPTION</a>
                         </li>
                     <?php endif; ?>
                     <?php if(!est_connecte()): ?>
                     <li>
-                        <a href="../vgs-connect.php">CONNEXION</a>
+                        <a href="./vgs-connect.php">CONNEXION</a>
                     </li>
                     <?php endif; ?>
 
 
                     <?php if(est_connecte() ): ?>
                         <li>
-                            <a href="../admin/profil.php?name=<?php echo $_SESSION['pseudo']; ?>">PARAMÈTRE</a>
+                            <a href="./admin/profil.php?name=<?php echo $_SESSION['pseudo']; ?>">PARAMÈTRE</a>
                         </li>
                     <?php endif; ?>
                     <?php if(est_connecte()): ?>
                         <li>
-                            <a href="../deconnexion.php">DÉCONNEXION</a>
+                            <a href="./deconnexion.php">DÉCONNEXION</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -112,7 +112,7 @@ ajouter_vue();
         </div>
         <div class="button_top">
             <li>
-                <a href="#header_nav"><img class="top-arrow" src="../img/top-arrow.png"></a>
+                <a href="#header_nav"><img class="top-arrow" src="./img/top-arrow.png"></a>
             </li>
         </div>
 
