@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : Dim 05 sep. 2021 à 21:05
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Généré le : jeu. 08 déc. 2022 à 14:52
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `vgs`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chapitre`
+--
+
+DROP TABLE IF EXISTS `chapitre`;
+CREATE TABLE IF NOT EXISTS `chapitre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projet` varchar(255) NOT NULL,
+  `nb_chap` varchar(11) NOT NULL,
+  `data_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `chapitre`
+--
+
+INSERT INTO `chapitre` (`id`, `projet`, `nb_chap`, `data_date`) VALUES
+(7, 'A Girl Like Alien', '35', '2022-12-07'),
+(2, 'A Girl Like Alien', '35.5', '2022-12-07'),
+(3, 'A Girl Like Alien', '35.6', '2022-12-07'),
+(4, 'A Girl Like Alien', '35.4', '2022-12-07'),
+(8, 'Break The World', '35.4', '2022-12-07');
 
 -- --------------------------------------------------------
 
@@ -52,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `mangas` (
   `artiste` text NOT NULL,
   `status` text NOT NULL,
   `annee` int(11) NOT NULL,
-  `genre` text NOT NULL,
+  `genre` text CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `description` text NOT NULL,
   `nb_chap` int(11) NOT NULL,
   `date_update` date NOT NULL,
@@ -84,7 +110,7 @@ INSERT INTO `mangas` (`id`, `nom`, `nom_alternatifs`, `auteur`, `artiste`, `stat
 (18, 'Shame Application', 'Shame Application', 'Fujoking', 'Fujoking', 'en cours', 2019, 'Ecchi , Josei , Romance , Yaoi', 'Un mannequin célèbre et un ancien camarade de classe du lycée seront liés par une application qui les obligerait à obéir, se faisant humilier. Qu\'attendriez-vous d\'une application qui a sa propre \"vie\"? Comment vont-ils assumer cette humiliation? L\'avertissement n\'était pas suffisant! L\'oeuvre va être sortie sous peu pour le premier chapitre il est en court d\'édition merci de patienté', 9, '2020-02-12'),
 (19, 'Sweet Candy', 'Sweet Candy', '??', '??', 'en cours', 2018, 'Comédie , Romance , Webtoon', 'Li Xiao Guo est une nouvelle infirmière de l\'hôpital Jiayu. Sa vie prend une tournure dramatique quand une série d\'incidents malheureux se produisent. Ses parents se font arnaquer avec leurs économies, sa famille est de plus en plus endettée, son téléphone est volé et le travail de Xiao Guo est menacé. Désespérée, Xiao Guo essaie de vendre son sang pour de l\'argent rapidement. En même temps, un patient spécial est admis à l\'hôpital et le monde de Xiao Guo est bouleversé. Il devient vite évident que Xiao Guo et ce nouveau patient sont liés par plus d\'une simple coïncidence ....', 23, '2020-02-12'),
 (21, 'World Teacher - Isekaishiki Kyouiku Agent', 'World Teacher - Isekaishiki Kyouiku Agent', 'NEKO Kouichi', 'YOSHINO Sora', 'en cours', 2018, 'Action , Aventure , Comédie , Drame , Fantastique , Harem , Romance , Vie Scolaire\r\n\r\n', 'Un homme qui était autre fois appelé l\'agent le plus puissant du monde a fini par devenir enseignant après sa retraite, pour former une nouvelle génération d\'agents. Après de nombreuses années d\'entraînement de ses disciples, il a été tué à l\'âge de 60 ans par une organisation secrète et s\'est réincarné dans un autre monde, ses souvenirs étant intacts. Bien qu\'il ait été surpris par l\'existence de la magie et des espèces étranges de ce monde, il s\'est rapidement adapté à sa condition de nouveau-né et en a profité. Il a acquis une magie spéciale et acquis une force considérable grâce à sa discipline rigoureuse afin d\'atteindre son objectif: reprendre sa carrière d\'enseignant qu\'il a quitté à mi-parcours dans sa vie antérieure. C’est l’histoire d’un homme qui, s’appuyant sur les souvenirs et les expériences de sa vie antérieure, est devenu un enseignant qui parcourt le monde avec ses élèves. Adaptation du lite novel.', 17, '2020-02-12'),
-(22, 'A Girl Like Alien', 'A Girl Like Alien', 'Nebillim', 'Nebillim', 'en pause', 2020, 'Comédie , Tranche de vie', 'Gil Cho-Rong avait soudainement changé après les vacances d\'été en troisième année de collège. Ses cheveux avaient été teints en vert ...', 4, '2020-12-06'),
+(22, 'A Girl Like Alien', 'A Girl Like Alien', 'Nebillim', 'Nebillim', 'en pause', 2020, 'Comédie , Tranche de vie', 'Gil Cho-Rong avait soudainement changé après les vacances d\'été en troisième année de collège. Ses cheveux avaient été teints en vert ...', 4, '2022-12-07'),
 (23, 'Free Life Isekai Nandemoya Funtouki', 'Free Life Isekai Nandemoya Funtouki', 'Kigatsukeba Kedama', 'Mori Airi', 'en pause', 2018, 'Action , Aventure , Comédie , Drame , Fantastique , Harem , Seinen', 'Sayama Takahiro, un lycéen insouciant, a été transporté dans un monde fantastique identique à celui d\'un certain jeu VR. Son attitude de \" go-with-the-flow \" a fini par l\'emporter sur son désir de rentrer chez lui, et maintenant il dirige \" Free Life \", une petite entreprise qui se consacre à répondre aux demandes de ses clients. Avec l\'aide de Yumiel, quel genre de travail Sayama finira-t-il par faire ?', 4, '2020-12-06'),
 (24, 'Isekai Maou To Shoukan Shoujo Dorei Majutsu', 'Isekai Maou To Shoukan Shoujo Dorei Majutsu', 'MURASAKI Yukiya', 'FUKUDA Naoto', 'en pause', 2015, 'Action , Aventure , Comédie , Fantastique , Harem , Romance , Shonen , Isekai', 'Sakamoto Takuma se vante d\'avoir une force exceptionnelle qui lui est suffisante pour être appelé le \"Roi Démon\" par les autres joueurs. Un jour, il est invoqué dans un autre monde avec la même apparence que dans le jeu. Là-bas se trouvent deux personne se déclarant être \"le vrai maître invocateur\". Takuma fut réduit en esclavage magique dû à un sort lancé par les deux filles. Cependant, l\'habilité {Magic Reflection} a été invoquée ! Ceux réduit à l\'état d\'esclave sont maintenant les filles ! Takuma est désorienté. Il est le plus puissant magicien mais, il ne possède aucun talent pour communiquer. Paniqué, les premiers mots qui sortent de sa bouche sont ceux qu\'il utilisé dans le jeu où il jouait le rôle de Roi Démon ! ? \"Je suis incroyable vous dites ? Bien sûr que je le suis. Je suis Diablo.................. Celui craint sous le nom de Roi Démon !\" Ceci est l\'histoire du (faux) Roi Démon qui inspirera bientôt le monde et de ses autres aventures à travers le monde dans lesquels il plongeât avec son immense pouvoir, que l\'histoire débute.', 18, '2020-02-12'),
 (25, 'Universe And Sword', 'Universe And Sword', 'SIN', 'SIN', 'en pause', 2019, 'Action , Aventure , Fantastique , Vie Scolaire , Sci-fi , Surnaturel , Webtoon', 'Un jeune garçon qui veut devenir un héros, Wuju, rencontre un jour le vrai héros qu\'il admire ? Le jeune garçon qui voulait devenir un héros, Wuju, devint à la place l\'épée du héros.', 6, '2021-03-13'),
@@ -107,9 +133,9 @@ CREATE TABLE IF NOT EXISTS `membres` (
   `mail` varchar(255) NOT NULL,
   `motdepasse` text NOT NULL,
   `birthdate` date NOT NULL,
-  `admin` int(11) NOT NULL,
+  `admin` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `membres`
@@ -119,7 +145,8 @@ INSERT INTO `membres` (`id`, `pseudo`, `mail`, `motdepasse`, `birthdate`, `admin
 (1, 'Volpe', 'volpgangscantrad@gmail.com', '03d87cf10d18efb61eeceec718a6bca0', '2001-01-08', 0),
 (2, 'Karao', 'liamvaganay61@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', '2001-08-18', 0),
 (6, 'araao', 'fdzdragon82@gmail.com', '03d87cf10d18efb61eeceec718a6bca0', '2000-01-01', 0),
-(7, 'Nolvshy', 'yukilovewaifu@gmail.com', '906e047e09378b875ea96799f23fc36d', '2000-10-06', 0);
+(7, 'Nolvshy', 'yukilovewaifu@gmail.com', '906e047e09378b875ea96799f23fc36d', '2000-10-06', 0),
+(8, 'Volpe08', 'f.rivetdurzy@gmail.com', 'a34ddc352aa9a504e0b14d3bb85773b1', '2001-01-01', 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `team` (
   `grade` text NOT NULL,
   `Admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `team`
@@ -153,7 +180,8 @@ INSERT INTO `team` (`id`, `pseudo`, `role`, `grade`, `Admin`) VALUES
 (17, 'Robin', 'coloriste', '', 0),
 (18, 'Jared', 'trad, check', '', 0),
 (26, 'Nolvshy', 'Coloriste', 'Chef Coloriste', 1),
-(21, 'Karao', 'Développeur', 'Développeur', 1);
+(21, 'Karao', 'Développeur', 'Développeur', 1),
+(27, 'Volpe08', 'edit, clean, coloriste, Leader', 'Leader', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
