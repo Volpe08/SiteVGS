@@ -212,3 +212,24 @@ footer div div a div#youtube_footer {
     width: 40px;
     height: 40px;
 }
+
+.container-flex{
+    display: flex;
+}
+.col1{
+    width:85%;
+}
+.col2{
+    width:auto  ;
+}
+
+.stuck {
+    position: fixed;
+    right: 0;
+    width:15%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow: hidden;
+
+}

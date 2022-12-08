@@ -9,6 +9,7 @@ body {
 }
 
 /*index.php*/
+
 .container{
     padding-bottom: 25px;
     width: 100%;
@@ -18,6 +19,8 @@ body {
     margin-left: auto;
 } @media (min-width: 576px) {
     .container {
+        display: flex;
+
         max-width: 540px;
     }
 }
