@@ -1,7 +1,7 @@
 <?php
 $bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
 
-$mangas = $bdd->query('SELECT nom, nb_chap FROM mangas ORDER BY date_update DESC');
+$mangas = $bdd->query('SELECT nom FROM mangas ORDER BY date_update DESC');
 $mangas->execute();
 
 //$chap = $bdd->query('SELECT nb_chap FROM mangas WHERE nom = ?');
@@ -64,14 +64,31 @@ $mangas->execute();
             $affiche = 5;
             $count = 0;
             while ($donnees = $mangas->fetch() and $count < $affiche):
-            $count += 1; ?>
+            $count += 1;
+
+            $last_Chap = $bdd->prepare('SELECT * FROM Chapitre WHERE projet = ? ORDER BY nb_chap DESC LIMIT 1');
+            $last_Chap->execute([$donnees['nom']]);
+
+            $count = $last_Chap->rowCount();
+
+            if($count != 0) {
+
+                foreach ($last_Chap as $row) {
+                    $chapitre = $row['nb_chap'];
+                    //echo $donnees['nom'];
+                }
+
+
+                ?>
                 <div class="solo">
-                    <a href="main.php?name=<?= $donnees['nom'] ?>&chap=<?= $donnees['nb_chap'] ?>">
-                        <img class="image_solo" src="img/mangas/<?= $donnees['nom'] ?>.jpg">
-                        <p class="name"><?= $donnees['nom'] ?></p>
-                        <p class="name">Chapitre <?= $donnees['nb_chap'] ?></p>
-                    </a>
-                </div><?php endwhile; ?>
+                <a href="main.php?name=<?= $donnees['nom'] ?>&chap=<?= str_replace('.', '-', $chapitre) ?>">
+                    <img class="image_solo" src="img/mangas/<?= $donnees['nom'] ?>.jpg">
+                    <p class="name"><?= $donnees['nom'] ?></p>
+                    <p class="name">Chapitre <?= $chapitre ?></p>
+                </a>
+                </div><?php
+            }
+            endwhile; ?>
             <iframe src="https://ptb.discord.com/widget?id=527784324989190154&theme=dark" align="right" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
         </div>

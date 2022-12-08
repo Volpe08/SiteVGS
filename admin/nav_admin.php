@@ -52,8 +52,6 @@ if ($_SESSION['pseudo'] != $authdev['pseudo']) {
     <link rel="icon" type="image/jpg" href="../img/vgs.png">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/complements.css">
-    <script>
-    console.log("<?php echo $_SESSION['poste'] ?>>")</script>
 </head>
 
 <body>

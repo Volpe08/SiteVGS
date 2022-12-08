@@ -4,6 +4,35 @@ $bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
 $mangas = $bdd->query('SELECT nom FROM mangas ORDER BY nom');
 
 
+if (isset($_POST['Name_Projet'])) {
+    $chapitre = "";
+    $req = $bdd->prepare("SELECT * FROM `Chapitre` WHERE projet = :id ORDER BY nb_chap ASC");
+    $req->bindParam('id', $_POST['Name_Projet']);
+    $req->execute();
+    $i = 0;
+
+    $count = $req->rowCount();
+    foreach ($req as $row) {
+
+
+        if ($i < $count - 1) {
+
+            $chapitre .= $row['nb_chap'] . ";";
+
+        } else {
+            $chapitre .= $row['nb_chap'];
+
+        }
+        $i = $i + 1;
+
+    }
+    $result = $req->fetch();
+
+    //je renvoie le résultat en json
+    echo json_encode($chapitre);
+    exit;
+}
+
 $dev = $bdd->prepare('SELECT pseudo FROM team WHERE grade = "Développeur"');
 $leader = $bdd->prepare('SELECT pseudo FROM team WHERE grade = "Leader"');
 $chef = $bdd->prepare('SELECT pseudo FROM team WHERE grade LIKE ("Chef%") OR ("Cheffe%")');
@@ -18,12 +47,9 @@ $authchef = $chef->fetch();
 
 session_start();
 
-if ($_SESSION['poste'] == 1  ){
+if ($_SESSION['poste'] == 1) {
 
-}
-
-else
-{
+} else {
     header('Location: ../index.php');
 
 }
@@ -89,7 +115,7 @@ if (isset($_POST['formcreate'])) {
             $insertmbr->execute(array($nom, $nom_alternatifs, $auteur, $artiste, $status, $annee, $genre, $description, $date_update));
             $erreur = 'Votre manga a bien été rentrer dans la base de donnée !';
         } else {
-            $erreur =  "Image non-insérer ou incorect";
+            $erreur = "Image non-insérer ou incorect";
         }
     } else {
         $erreur = "Il y a une erreur dans la matrice : erreur 666 ! (tout les champs ne sont pas remplis)";
@@ -100,16 +126,16 @@ if (isset($_POST['formcreate'])) {
 
 if (isset($_POST['formchap'])) {
 
-        $number = str_replace('.','-',$_POST['number']);
-        $exist = '../img/scan/' . $_POST['name'] . "/" . $number;
-        $cible = $_POST['name'];
-        $date_update = date('Y-m-d H:i:s');
-        $sortie = $bdd->query('SELECT * FROM mangas WHERE nom = "' . $cible . '"');
-        $nombrechap = $sortie->fetch();
-    if (file_exists($exist)){
+    $number = str_replace('.', '-', $_POST['number']);
+    $exist = '../img/scan/' . $_POST['name'] . "/" . $number;
+    $cible = $_POST['name'];
+    $date_update = date('Y-m-d H:i:s');
+    $sortie = $bdd->query('SELECT * FROM mangas WHERE nom = "' . $cible . '"');
+    $nombrechap = $sortie->fetch();
+    if (file_exists($exist)) {
 
         $files = glob($exist . '/*'); // get all file names
-        foreach($files as $file) { // iterate files
+        foreach ($files as $file) { // iterate files
             if (is_file($file))
                 unlink($file); // delete file
         }
@@ -118,19 +144,16 @@ if (isset($_POST['formchap'])) {
     if (!file_exists('../img/scan/' . $_POST['name'] . "/" . $number . "/")) {
         mkdir('../img/scan/' . $_POST['name'] . "/" . $number . "/", 0777, true);
     }
-    if (!empty($number) AND !empty($_POST['name'] )) {
+    if (!empty($number) and !empty($_POST['name'])) {
         $uploaddir = '../img/scan/' . $_POST['name'] . "/" . $number . "/";
-        $uploadfile =  $uploaddir . basename($_FILES['file_zip']['name']);
+        $uploadfile = $uploaddir . basename($_FILES['file_zip']['name']);
         //var_dump($_FILES['file_zip']['name']);
         move_uploaded_file($_FILES['file_zip']['tmp_name'], $uploaddir . $cible . " - " . $number . ".zip");
 
         $zip = new ZipArchive();
 
-        $zip->open($uploaddir . $cible . " - " . $number . ".zip",ZipArchive::CREATE);
+        $zip->open($uploaddir . $cible . " - " . $number . ".zip", ZipArchive::CREATE);
         //$zip->open($uploaddir . $cible . " - " . $number . ".zip");
-
-
-
 
 
         $i = 0;
@@ -156,14 +179,50 @@ if (isset($_POST['formchap'])) {
         /*$insertchap = $bdd->prepare("UPDATE mangas SET nb_chap = '" . $number . "', date_update ='" . $date_update . "'WHERE nom = '" . $cible . "'");
         $insertchap->execute(array());*/
 
-        /*$insertchap = $bdd->prepare("UPDATE chapites SET nb_chap = '" . $number . "', date_data ='" . $date_update . "', projet = '" . $cible . "'" );
-        $insertchap->execute(array());*/
+        $selectChapBdd = $bdd->prepare("SELECT * from chapitre where projet = ? AND nb_chap = ?");
+        $selectChapBdd->execute([$cible, $number]);
+
+        $compteur = $selectChapBdd->rowCount();
+
+        if ($compteur != 0) {
+            foreach ($selectChapBdd as $row) {
+                $id = $row['id'];
+            }
+
+//            $selectChapBdd = $bdd->prepare("SELECT * from chapitre where projet = ? ORDER BY nb_chap ASC ");
+//            $selectChapBdd->execute([$cible]);
+//            foreach ($selectChapBdd as $row){
+//                $nbchapitre = $row['nb_chap'];
+//                echo $nbchapitre . "\n";
+//            }
 
 
-        $insertchap = $bdd->prepare("INSERT INTO chapitres (projet, nb_chap, data_date) VALUES(?, ?, ?)");
-        $insertchap->execute(array($cible, $number, $date_update));
+            $erreur = "Je vais sup un chapitre " . $id;
 
-        $erreur = "Votre chapitre a bien été upload ! ";
+
+            $delete_chap = $bdd->prepare("DELETE FROM `chapitre` WHERE projet = ? AND nb_chap = ?");
+            $delete_chap->execute(array($cible, $number));
+
+            $insertchap = $bdd->prepare("INSERT INTO chapitre (projet, nb_chap, data_date) VALUES(?, ?, ?)");
+            $insertchap->execute(array($cible, $number, $date_update));
+
+            $erreur = "Votre chapitre a bien été modifier ! ";
+
+
+        } else {
+
+//        $insertchap = $bdd->prepare("UPDATE chapites SET nb_chap = ?, date_data =?, projet = ?" );
+//        $insertchap->execute(array($number,$date_update,$cible));
+
+
+            $insertchap = $bdd->prepare("INSERT INTO chapitre (projet, nb_chap, data_date) VALUES(?, ?, ?)");
+            $insertchap->execute(array($cible, $number, $date_update));
+
+            $erreur = "Votre chapitre a bien été upload ! ";
+        }
+
+        $insertchap = $bdd->prepare("UPDATE mangas SET date_update ='" . $date_update . "'WHERE nom = '" . $cible . "'");
+        $insertchap->execute(array());
 
     } else {
         $erreur = "Un des champs n'est pas rempli !";
@@ -172,10 +231,6 @@ if (isset($_POST['formchap'])) {
     }
 
 }
-
-
-
-
 
 
 if (isset($_POST['id_produit'])) {
@@ -189,6 +244,7 @@ if (isset($_POST['id_produit'])) {
 }
 
 
+//Selection des nom de chapitre
 $stmt = $bdd->query('SELECT * FROM mangas ORDER BY nom');
 $stmt->execute();
 $lesresult = $stmt->fetchAll();
@@ -201,19 +257,46 @@ $lesresult = $stmt->fetchAll();
     <meta charset="UTF-8 sans BOM">
     <link rel="stylesheet" type="text/css" href="../css/admin/upload.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script>
 
         var NumberChapterDelete = document.getElementById('Projet');
 
 
-        function Delete_Chapter(Name_Projet)
-        {
+        function Delete_Chapter(Name_Projet) {
 
 
+            $.ajax({
+                type: "POST",
+                url: "upload.php",
+                data: {
+                    Name_Projet: Name_Projet
+                },
+                //dataType: 'json',
+                success: function (reponse) {
+                    //function js succès
+                    reponse = reponse.replaceAll('"', '');
+                    let tableau = reponse.split(';');
+                    console.log(reponse);
+                    console.log(tableau);
+                    console.log(tableau.length);
 
 
-            console.log(Name_Projet);
+                    //Création d'option pour data list sup
+                    for (let i = 0; i < tableau.length; i++) {
+                        var option = document.createElement('option');
+                        option.value = tableau[i];
+                        option.innerHTML = tableau[i];
+                        document.getElementById('Chapter').appendChild(option);
+                    }
+
+
+                },
+                error: function (req, status, error) {
+                    console.log(req + " " + status + " " + error);
+                }
+            });
 
 
 
@@ -221,20 +304,21 @@ $lesresult = $stmt->fetchAll();
     </script>
 
 
-
-
 </head>
 
 <body>
 <?php
-if(isset($erreur)) {
-    echo '<font color="red">'.$erreur."</font>";
+if (isset($erreur)) {
+    echo '<font color="red">' . $erreur . "</font>";
 }
 ?>
 <form method="POST" class="form_choice">
-    <input class="input-select <?= $upload ?>" formmethod="post" value="Upload un Chapitre" type="submit" id="uplaod" name="upload">
-    <input class="input-select <?= $create ?>" formmethod="post" value="Créer un projet" type="submit" id="create" name="create">
-    <input class="input-select <?= $supp ?>" formmethod="post" value="Supprimer un Chapitre" type="submit" id="supp" name="supp">
+    <input class="input-select <?= $upload ?>" formmethod="post" value="Upload un Chapitre" type="submit" id="uplaod"
+           name="upload">
+    <input class="input-select <?= $create ?>" formmethod="post" value="Créer un projet" type="submit" id="create"
+           name="create">
+    <input class="input-select <?= $supp ?>" formmethod="post" value="Supprimer un Chapitre" type="submit" id="supp"
+           name="supp">
 
 </form>
 
@@ -264,7 +348,8 @@ if(isset($erreur)) {
                     <label for="other_name">Noms alternatifs :</label>
                 </td>
                 <td>
-                    <input type="text" class="text" id="nom_alternatifs" name="nom_alternatifs" placeholder="Nom(s) Alternatif(s)">
+                    <input type="text" class="text" id="nom_alternatifs" name="nom_alternatifs"
+                           placeholder="Nom(s) Alternatif(s)">
                 </td>
             </tr>
             <tr>
@@ -304,7 +389,8 @@ if(isset($erreur)) {
                     <label for="genre">Genre :</label>
                 </td>
                 <td>
-                    <input class="text genre" formmethod="post" name="genre" placeholder="genre(s) : Action, Ecchi,..." id="genre">
+                    <input class="text genre" formmethod="post" name="genre" placeholder="genre(s) : Action, Ecchi,..."
+                           id="genre">
                 </td>
             </tr>
             <tr>
@@ -312,7 +398,8 @@ if(isset($erreur)) {
                     <label for="description">Description :</label>
                 </td>
                 <td>
-                    <input class="text" formmethod="post" id="description" name="description" type="text" placeholder="description">
+                    <input class="text" formmethod="post" id="description" name="description" type="text"
+                           placeholder="description">
                 </td>
             </tr>
         </table>
@@ -325,23 +412,23 @@ if(isset($erreur)) {
     <form method="post" enctype="multipart/form-data">
         <table>
             <div align="center">
-                <h3 >Choisissez le projet :</h3>
+                <h3>Choisissez le projet :</h3>
             </div>
 
             <label for="name">Choisissez le projet :</label>
 
-                <input list="Projet" class="text" name="name" id="name" />
+            <input list="Projet" class="text" name="name" id="name"/>
 
-                <datalist id="Projet">
-                    <?php
-                    while ($donnees = $mangas->fetch()):
-                    echo '<option value="'.$donnees['nom'].'">';
+            <datalist id="Projet">
+                <?php
+                while ($donnees = $mangas->fetch()):
+                    echo '<option value="' . $donnees['nom'] . '">';
 
 
                     ?>
 
-            <?php endwhile; ?>
-                </datalist>
+                <?php endwhile; ?>
+            </datalist>
         </table>
         <br>
         <table>
@@ -360,7 +447,7 @@ if(isset($erreur)) {
                     <label for="number">numéro du chapitre :</label>
                 </td>
                 <td>
-                    <input type="number" class="text" name="number" id="number" step="0.1" >
+                    <input type="number" class="text" name="number" id="number" step="0.1">
                 </td>
             </tr>
         </table>
@@ -374,15 +461,15 @@ if(isset($erreur)) {
     <form method="post" enctype="multipart/form-data">
         <table>
             <div align="center">
-                <h3 >Choisissez le projet :</h3>
+                <h3>Choisissez le projet :</h3>
             </div>
             <label for="name">Choisissez le projet :</label>
-            <input list="Projet" class="text" name="name" id="name" onchange="Delete_Chapter(this.value)" />
+            <input list="Projet" class="text" name="name" id="name" onchange="Delete_Chapter(this.value)"/>
 
             <datalist id="Projet">
                 <?php
                 foreach ($lesresult as $leresult) {
-                    echo '<option value="'.$leresult['nom'].'" >';
+                    echo '<option value="' . $leresult['nom'] . '" >';
 
                 }
 
@@ -396,16 +483,15 @@ if(isset($erreur)) {
             <tr>
                 <td>
 
-                    <label for="number">numéro du chapitre :</label>
+                    <label for="Number_Chapter">Numéro du chapitre :</label>
                 </td>
                 <td>
-                    <select name="Number_Chapter" id="number" class="text">
-                        <input list="Chapter" class="text" name="Number_Chapter" id="Number_Chapter"  />
+                    <input list="Chapter" class="text" name="Number_Chapter" id="Number_Chapter"/>
 
-                        <datalist id="Chapter">
-                            <option value="">Selectionnez un chapitre</option>
+                    <datalist id="Chapter">
+                        <option value="" selected>Selectionnez un chapitre</option>
 
-                        </datalist>
+                    </datalist>
 
 
                 </td>
