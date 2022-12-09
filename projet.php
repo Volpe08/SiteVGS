@@ -4,7 +4,7 @@ include 'complements/header.php';
 date_default_timezone_set('Europe/Paris');
 
 
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("./bdd/connection_bdd.php");
 
 $sortie = $bdd->query('SELECT * FROM mangas WHERE nom = "' . $_GET['name'] . '"');
 

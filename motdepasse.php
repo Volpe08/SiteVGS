@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("./bdd/connection_bdd.php");
 
 if (isset($_POST['formmotdepasse'])) {
     $mail = $_POST['mail'];

@@ -2,7 +2,7 @@
 require '../function/auth.php';
 forcer_utilisateur_connecte();
 require_once '../function/compteur.php';
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("../bdd/connection_bdd.php");
 
 $print = $bdd->query('SELECT * FROM team WHERE pseudo = "'.$_SESSION["pseudo"].'"' );
 $code = $print->fetch();

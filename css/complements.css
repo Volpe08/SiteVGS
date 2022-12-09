@@ -1,23 +1,26 @@
-* {-moz-box-sizing: border-box; box-sizing: border-box;}
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 element {
-    --body_bg_color : #2E2E2E;
-    --bg_complement : dodgerblue;
-    --text_color : white;
-    --text_black : black;
+    --body_bg_color: #2E2E2E;
+    --bg_complement: dodgerblue;
+    --text_color: white;
+    --text_black: black;
 
-    --border_black : 2px solid black;
-    --border_solo : 2px solid dodgerblue;
+    --border_black: 2px solid black;
+    --border_solo: 2px solid dodgerblue;
 
-    --twitch : url(../img/twitch.png);
-    --discord : url(../img/discord.png);
-    --youtube : url(../img/youtube.png);
-    --facebook : url(../img/facebook.png);
-    --twitter : url(../img/twitter.png);
+    --twitch: url(../img/twitch.png);
+    --discord: url(../img/discord.png);
+    --youtube: url(../img/youtube.png);
+    --facebook: url(../img/facebook.png);
+    --twitter: url(../img/twitter.png);
 
 }
 
-html.complements{
+html.complements {
     font-family: "Comic Sans MS", serif;
     background: var(--bg_complement);
     color: var(--text_color);
@@ -30,12 +33,12 @@ body {
     padding: 0;
 }
 
-.a_header ul li a{
+.a_header ul li a {
     color: var(--text_color);
 }
 
 /*header.php*/
-header{
+header {
     position: absolute;
     width: 100%;
     left: 0;
@@ -43,24 +46,24 @@ header{
     top: 0;
 }
 
-header div{
+header div {
     display: block;
     font-size: 20px;
     padding: 5px 0 5px 0;
 }
 
-header nav ul li a{
+header nav ul li a {
     text-decoration: none;
     list-style-type: none;
 }
 
-header nav ul, header nav ul li, header nav ul li a{
+header nav ul, header nav ul li, header nav ul li a {
     display: flex;
     justify-content: space-around;
     align-self: center;
 }
 
-div.button_top{
+div.button_top {
     background: #00000000;
     position: fixed;
     right: 20px;
@@ -69,24 +72,24 @@ div.button_top{
     list-style-type: none;
 }
 
-div.button_top:hover{
+div.button_top:hover {
     opacity: 100%;
     transition: 0.5s;
 }
 
-img.top-arrow{
+img.top-arrow {
     width: 30px;
     height: 30px;
 }
 
 
 /*footer.php*/
-footer.footer{
+footer.footer {
     display: table-row;
     height: 1px;
 }
 
-div.footer{
+div.footer {
     display: table;
     width: 100%;
     margin-top: 100px;
@@ -97,7 +100,7 @@ div.footer{
     bottom: 0;
 }
 
-.back{
+.back {
     border: 1px solid blue;
     outline: none;
     border-radius: 10px;
@@ -143,23 +146,23 @@ div.footer{
 /*}*/
 
 
-.normal{
+.normal {
     background-color: var(--bg_complement);
     color: var(--text_color);
 }
 
-.light{
+.light {
     background-color: whitesmoke;
-    color: black!important;
+    color: black !important;
 }
 
 
-.dark{
+.dark {
     background: var(--body_bg_color);
     color: var(--text_color);
 }
 
-footer div{
+footer div {
     font-size: 20px;
     text-align: center;
     padding-bottom: 5px;
@@ -171,7 +174,7 @@ footer div div {
     justify-content: center;
 }
 
-footer div div a img.reseaux{
+footer div div a img.reseaux {
     padding-right: 10px;
     width: 40px;
     height: 40px;
@@ -184,6 +187,7 @@ footer div div a div#discord_footer {
     width: 40px;
     height: 40px;
 }
+
 footer div div a div#twitch_footer {
     background-image: var(--twitch);
     background-repeat: no-repeat;
@@ -191,6 +195,7 @@ footer div div a div#twitch_footer {
     width: 40px;
     height: 40px;
 }
+
 footer div div a div#twitter_footer {
     background-image: var(--twitter);
     background-repeat: no-repeat;
@@ -198,13 +203,15 @@ footer div div a div#twitter_footer {
     width: 40px;
     height: 40px;
 }
+
 footer div div a div#facebook_footer {
-     background-image: var(--facebook);
-     background-repeat: no-repeat;
-     background-size: 30px;
-     width: 40px;
-     height: 40px;
+    background-image: var(--facebook);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
 }
+
 footer div div a div#youtube_footer {
     background-image: var(--youtube);
     background-repeat: no-repeat;
@@ -213,20 +220,47 @@ footer div div a div#youtube_footer {
     height: 40px;
 }
 
-.container-flex{
+.container-flex {
     display: flex;
 }
-.col1{
-    width:85%;
+
+.col1 {
+    width: 84%;
 }
-.col2{
-    width:auto  ;
+
+.col2 {
+    width: auto;
+}
+
+.col3 {
+    width: 1%;
+    position: fixed;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow: hidden;
+
+}
+
+.element {
+    margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+}
+
+.leftarrow {
+    left: 84%;
+
+}
+
+.leftarrow2 {
+    left: 99%;
+
 }
 
 .stuck {
     position: fixed;
     right: 0;
-    width:15%;
+    width: 15%;
     height: auto;
     overflow-x: hidden;
     overflow-y: scroll;

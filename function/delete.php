@@ -4,7 +4,7 @@ date_default_timezone_set('Europe/Paris');
 
 
 
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("../bdd/connection_bdd.php");
 
 $id = $_GET['id'];
 $getname = $_GET['proj'];

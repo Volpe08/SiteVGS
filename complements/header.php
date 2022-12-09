@@ -2,8 +2,7 @@
 require 'function/compteur.php';
 require 'function/auth.php';
 session_start();
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
-
+include_once("../bdd/connection_bdd.php");
 
 if (empty($_SESSION["pseudo"]) )
 {

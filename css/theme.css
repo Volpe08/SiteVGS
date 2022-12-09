@@ -43,7 +43,9 @@ body {
 
 #numero_de_page {
     color: orange;
-}#numero_de_page1 {
+}
+
+#numero_de_page1 {
     color: orange;
 }
 
@@ -120,5 +122,19 @@ body {
         /*height : auto;*/
 
     }
+
+}
+.rotate {
+    transform: rotateY(180deg);
+}
+
+.col1bis{
+    width:99%;
+}
+.col2bis{
+    width:auto  ;
+}
+.col3bis{
+    width:1%;
 
 }

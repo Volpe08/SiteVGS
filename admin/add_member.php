@@ -2,7 +2,7 @@
 require '../function/auth.php';
 forcer_utilisateur_connecte();
 require 'nav_admin.php';
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("../bdd/connection_bdd.php");
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);

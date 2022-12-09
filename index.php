@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("./bdd/connection_bdd.php");
 
 $mangas = $bdd->query('SELECT nom FROM mangas ORDER BY date_update DESC');
 $mangas->execute();

@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=127.0.0.1;port=3308;dbname=vgs', 'root', '');
+include("./bdd/connection_bdd.php");
 
 $scan = $bdd->query('SELECT * FROM mangas');
 $chemin = "img/scan/" . $_GET['name'] . "/" . $_GET['chap'] . "/";
@@ -158,7 +158,7 @@ $count2 = count($files);
 
                 for ($i = 9; $i > 0; $i--) {
 
-                $chap_suivant = $_GET['chap']-1 . '.' . $i;
+                $chap_suivant = $_GET['chap'] - 1 . '.' . $i;
                 $chemin_suivant = "img/scan/" . $_GET['name'] . "/" . str_replace('.', '-', $chap_suivant) . "/1.jpg";
 
 
@@ -204,16 +204,18 @@ $count2 = count($files);
 
                 ?>
                 console.log("L-204")
-                setTimeout(() => {  document.location.href = "main.php?name=<?php echo $_GET['name'] ?>&chap=<?= $chap_suivant ?>"; }, 100);
+                setTimeout(() => {
+                    document.location.href = "main.php?name=<?php echo $_GET['name'] ?>&chap=<?= $chap_suivant ?>";
+                }, 100);
 
                 <?php
                 }else{
-                    ?>
+                ?>
                 document.location.href = "projet.php?name=<?php echo $_GET['name'] ?>"
 
-            <?php
+                <?php
 
-            }
+                }
                 }else{
                 $chap_suivant = strstr($_GET['chap'], '-');
                 $pos = strpos($_GET['chap'], '-');
@@ -306,6 +308,11 @@ $count2 = count($files);
             }
             }
             $chap_suivant_complet = $_GET['chap'] + 1;
+
+            $chemin_suivant = "img/scan/" . $_GET['name'] . "/" . $chap_suivant_complet . "/1.jpg";
+
+            if(file_exists($chemin_suivant)){
+
             //sleep(2);
             ?>
             console.log("L-297");
@@ -316,6 +323,12 @@ $count2 = count($files);
             //console.log("<?php echo $chap_suivant; ?>")
 
             <?php
+            }else {
+            ?>
+            document.location.href = "projet.php?name=<?php echo $_GET['name'] ?>"
+
+            <?php
+            }
             }else{
             $chap_suivant = strstr($_GET['chap'], '-');
             $pos = strpos($_GET['chap'], '-');
