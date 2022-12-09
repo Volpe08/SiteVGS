@@ -1,5 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    /*width: 100%;*/
+    width: 100%;
     background-color: black;
 }
 
@@ -15,21 +20,34 @@ body {
         max-width: 540px;
     }
 }*/
+.hidden {
+    display: block;
+}
+
 
 .page {
     text-align: center !important;
-    /*width: 200%;*/
+
+    /*height : auto;*/
+
 }
 
-.text{
+.img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text {
     color: white;
 }
 
-#numero_de_page{
+#numero_de_page {
+    color: orange;
+}#numero_de_page1 {
     color: orange;
 }
 
-.arrow{
+.arrow {
     position: absolute;
     top: auto;
     bottom: auto;
@@ -45,4 +63,62 @@ body {
 .right {
     top: 50%;
     right: 10px;
+}
+
+.visibility {
+    display: none;
+}
+
+.parent {
+    position: relative;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.absolute {
+    position: absolute;
+
+}
+
+.child1 {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    opacity: 0;
+    background: red;
+}
+
+.child2 {
+
+    z-index: 1;
+    width: 50%;
+    height: 100%;
+    right: 0;
+
+    background: green;
+}
+
+@media only screen and (max-width: 65em) {
+    /* Style adjustments for viewports that meet the condition */
+    .hidden {
+        display: none;
+    }
+
+    .col1 {
+        width: 100%;
+    }
+
+    .visibility {
+        display: block;
+    }
+
+    .page {
+        text-align: center !important;
+        width: 100%;
+        /*height : auto;*/
+
+    }
+
 }
